@@ -7,8 +7,8 @@ import com.gozic.NguyenTienMinh_ThucTapJava.DTO.Response.Product.ProductResponse
 import com.gozic.NguyenTienMinh_ThucTapJava.Service.Product.IProductService;
 import com.gozic.NguyenTienMinh_ThucTapJava.Service.User.IUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.web.PagedModel;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +38,7 @@ public class PublicController {
         Map<String, List<ProductResponse>> pages = this.productService.findAll(search);
         ModelAndView modelAndView = new ModelAndView("home");
         modelAndView.addObject("products", pages);
+        modelAndView.addObject("title", StringUtils.hasText(search.getTitle()) ? search.getTitle() : "");
         return modelAndView;
     }
 

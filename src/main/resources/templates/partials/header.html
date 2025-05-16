@@ -22,7 +22,7 @@
         <div class="right-actions">
             <div class="d-flex justify-content-center">
                 <div class="input-group">
-                    <input type="text" name="title" id="title" class="form-control mb-0" placeholder="Bạn muốn tìm gì?" aria-label="Từ khóa tìm kiếm">
+                    <input type="text" th:value="${title}" name="title" id="title" class="form-control mb-0" placeholder="Bạn muốn tìm gì?" aria-label="Từ khóa tìm kiếm">
                     <button class="btn btn-outline-secondary" onclick="searchByTitle()">Tìm kiếm</button>
                 </div>
             </div>

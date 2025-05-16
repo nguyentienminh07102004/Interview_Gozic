@@ -33,10 +33,10 @@ public class ProductServiceImpl implements IProductService {
         Specification<ProductEntity> specification = (root, query, builder) -> {
             Predicate predicate = builder.conjunction();
             if (StringUtils.hasText(search.getTitle())) {
-                predicate = builder.and(builder.like(builder.lower(root.get(ProductEntity_.TITLE)), "%" + search.getTitle().toLowerCase() + "%"));
+                predicate = builder.and(predicate, builder.like(builder.lower(root.get(ProductEntity_.TITLE)), "%" + search.getTitle().toLowerCase() + "%"));
             }
             if (StringUtils.hasText(search.getCategoryCode())) {
-                predicate = builder.and(builder.or(
+                predicate = builder.and(predicate, builder.or(
                         builder.equal(root.get(ProductEntity_.CATEGORY).get(CategoryEntity_.CODE), search.getCategoryCode()),
                         builder.equal(root.get(ProductEntity_.CATEGORY).get(CategoryEntity_.PARENT).get(CategoryEntity_.CODE), search.getCategoryCode())
                 ));

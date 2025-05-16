@@ -17,4 +17,9 @@ public class ModelAttributeCustomer {
     public List<CategoryResponse> renderListCategory() {
         return this.categoryService.findAll();
     }
+
+    @ModelAttribute(value = "title")
+    public String titleRender() {
+        return "";
+    }
 }
