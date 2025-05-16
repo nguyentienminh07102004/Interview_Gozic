@@ -12,7 +12,6 @@ import com.gozic.NguyenTienMinh_ThucTapJava.Service.Category.ICategoryService;
 import jakarta.persistence.criteria.Predicate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -34,13 +33,13 @@ public class ProductServiceImpl implements IProductService {
         Specification<ProductEntity> specification = (root, query, builder) -> {
             Predicate predicate = builder.conjunction();
             if (StringUtils.hasText(search.getTitle())) {
-                predicate = builder.like(builder.lower(root.get(ProductEntity_.TITLE)), "%" + search.getTitle().toLowerCase() + "%");
+                predicate = builder.and(builder.like(builder.lower(root.get(ProductEntity_.TITLE)), "%" + search.getTitle().toLowerCase() + "%"));
             }
             if (StringUtils.hasText(search.getCategoryCode())) {
-                predicate = builder.or(
+                predicate = builder.and(builder.or(
                         builder.equal(root.get(ProductEntity_.CATEGORY).get(CategoryEntity_.CODE), search.getCategoryCode()),
                         builder.equal(root.get(ProductEntity_.CATEGORY).get(CategoryEntity_.PARENT).get(CategoryEntity_.CODE), search.getCategoryCode())
-                );
+                ));
             }
             return predicate;
         };

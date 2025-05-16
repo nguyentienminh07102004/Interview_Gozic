@@ -26,6 +26,7 @@ public class ProductFavouriteServiceImpl implements IProductFavouriteService {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         if (this.productFavouriteRepository.existsByProduct_IdAndUser_Username(productId, username)) {
             this.productFavouriteRepository.deleteByProduct_IdAndUser_Username(productId, username);
+            return;
         }
         ProductEntity product = this.productRepository.findById(productId)
                 .orElseThrow(() -> new AppException(ExceptionVariable.PRODUCT_NOT_FOUND));
