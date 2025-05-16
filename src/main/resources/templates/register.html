@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/register.css}" />
+</head>
+<body>
+<div class="register-container" layout:fragment="content">
+    <h2>Đăng Ký</h2>
+    <form action="/register" method="post">
+        <input type="text" name="username" placeholder="Nhập tên tài khoản" required/>
+        <input type="email" name="email" placeholder="Nhập Email" required/>
+        <input type="password" name="password" placeholder="Nhập mật khẩu" required/>
+        <input type="password" name="confirmPassword" placeholder="Nhập lại mật khẩu" required/>
+        <button type="submit">Đăng Ký Ngay</button>
+    </form>
+</div>
+</body>
+</html>

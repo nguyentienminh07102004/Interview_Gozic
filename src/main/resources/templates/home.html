@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid px-0">
+        <img src="/images/banner.png" alt="Banner" class="banner">
+    </div>
+
+    <div class="container mt-4">
+        <h4 class="fw-bold">Danh Mục Sản Phẩm</h4>
+        <div th:each="productEntry : ${products}">
+            <div class="section-title" th:text="${productEntry.key}"></div>
+            <div class="row row-cols-3 row-cols-sm-3 row-cols-md-4 g-3">
+                <div class="col" th:each="product : ${productEntry.value}">
+                    <div class="card">
+                        <img th:src="${'/images/' + product.getImage()}" class="card-img-top product-img"
+                             th:alt="${product.getTitle()}">
+                        <span class="heart-icon" th:data-product-id="${product.getId()}" onclick="toggleHeart(this)" th:text="${product.isFavourites() ? '❤️' : '🤍'}">
+                        </span>
+                        <div class="card-body p-2">
+                            <p class="card-text small mb-1" th:text="${product.getTitle()}"></p>
+                            <strong th:text="${product.getPrice() + 'đ'}"></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Xem thêm -->
+        <a href="#" class="xem-them-btn">Xem Thêm</a>
+    </div>
+    <script>
+        function toggleHeart(element) {
+            const productId = element.getAttribute('data-product-id');
+            // Tạo form ẩn để submit
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = `/products/favorite-product/${productId}`;
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+
+</div>
+</body>
+</html>

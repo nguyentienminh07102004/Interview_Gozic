@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Intro</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="vps-banner mb-4">
+        <img th:src="@{/images/intro.png}" alt="Intro" class="img-fluid w-100 rounded">
+    </section>
+    <section class="vps-about container py-5">
+        <div class="row align-items-start">
+            <!-- Logo -->
+            <div class="col-md-2 mb-3">
+                <img th:src="@{/images/logo.png}" alt="VPS Fashion Logo" class="img-fluid">
+            </div>
+
+            <div class="col-md-7">
+                <p>
+                    <strong>VPS_Fashion</strong> 2 năm - Khoác lên niềm vui gia đình Việt. Năm 2021, Công ty Cổ phần
+                    Thương mại và Dịch vụ Hoàng Dương được thành lập với mục đích chính ban đầu là hoạt động trong lĩnh
+                    vực sản xuất hàng thời trang xuất khẩu với các sản phẩm chủ yếu làm từ len và sợi. Năm 2022 thương
+                    hiệu thời trang VPS-Fashion ra đời, tự hào trở thành một cột mốc đáng nhớ của doanh nghiệp Việt
+                    trong ngành thời trang.
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-9"></div>
+                <div class="col-md-3 text-center">
+                    <img th:src="@{/images/family.png}" alt="Gia đình" class="img-fluid rounded">
+                </div>
+            </div>
+            <div>
+                <div class="col-md-9">
+                    <p>
+                        <strong>VPS-Fashion</strong> hướng đến mục tiêu mang lại niềm vui mặc mới mỗi ngày cho hàng
+                        triệu người tiêu dùng Việt. Chúng tôi tin rằng người dân Việt Nam cũng đang hướng đến một cuộc
+                        sống năng động, tích cực hơn.
+                    </p>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        <div class="d-none vps-about-more">
+            Phần xem thêm ...
+        </div>
+    </section>
+
+        <button class="xem-them-btn toggle-about">XEM THÊM</button>
+
+    <script>
+        document.querySelector('.toggle-about').addEventListener('click', function () {
+            const content = document.querySelector('.vps-about-more');
+            const btn = this;
+            content.classList.toggle('d-none');
+            btn.textContent = content.classList.contains('d-none') ? 'XEM THÊM' : 'THU GỌN';
+        });
+    </script>
+</div>
+</body>
+</html>
